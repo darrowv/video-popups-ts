@@ -1,5 +1,13 @@
+import "./app.css";
+import Content from "./components/Content";
+
 function App() {
-  return <h1>Hello, World!</h1>;
+  return (
+    <main className="main">
+      <h1 className="header">Video Popups</h1>
+      <Content />
+    </main>
+  );
 }
 
 export default App;

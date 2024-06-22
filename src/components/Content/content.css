@@ -1,0 +1,12 @@
+.content {
+  width: 100%;
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  max-height: 400px;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  background: #1e293b;
+  overflow: hidden;
+}
