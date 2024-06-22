@@ -1,31 +1,40 @@
-import { useEffect, useState } from "react";
-import "./timestamps.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEvents, setVideoTimestamp } from "../../store/actions";
+import { RootState } from "../../store";
 import formatTimestamp from "../../utils/formatTimestamp";
 import { IEvent } from "../../utils/interfaces/event.interface";
 
+import "./timestamps.css";
+import { useEffect } from "react";
+
 function Timestamps() {
-  let [timestamps, setTimestamps] = useState<number[]>([]);
+  const events = useSelector((state: RootState) => state.events);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getData() {
-      let req = await fetch(
-        "https://run.mocky.io/v3/d5dea963-2802-4856-9cab-378fdba1283d",
-      );
+    dispatch(fetchEvents());
+  }, [dispatch]);
 
-      let data: IEvent[] = await req.json();
-
-      setTimestamps(data.map((event) => event.timestamp));
-    }
-
-    getData();
-  }, []);
+  const handleEventClick = (timestamp: number) => {
+    dispatch(setVideoTimestamp(null));
+    setTimeout(() => {
+      dispatch(setVideoTimestamp(timestamp));
+    }, 0);
+  };
 
   return (
     <section className="timestamps">
       <h3>Timestamps</h3>
       <ul className="list">
-        {timestamps.map((ts) => {
-          return <li key={ts}>{formatTimestamp(ts)}</li>;
+        {events.map((event: IEvent) => {
+          return (
+            <li
+              key={event.timestamp}
+              onClick={() => handleEventClick(event.timestamp)}
+            >
+              {formatTimestamp(event.timestamp)}
+            </li>
+          );
         })}
       </ul>
     </section>
