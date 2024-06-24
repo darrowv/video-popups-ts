@@ -1,5 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { SET_EVENTS, SET_VIDEO_TIMESTAMP } from "./actions";
+import { SET_EVENTS, SET_VIDEO_PLAYBACK_TIME } from "./actions";
 
 const eventsReducer = (state = [], action: any) => {
   switch (action.type) {
@@ -10,9 +10,9 @@ const eventsReducer = (state = [], action: any) => {
   }
 };
 
-const videoTimestampReducer = (state: number | null = 0, action: any) => {
+const videoPlaybackTimeReducer = (state: number | null = 0, action: any) => {
   switch (action.type) {
-    case SET_VIDEO_TIMESTAMP:
+    case SET_VIDEO_PLAYBACK_TIME:
       return action.timestamp;
     default:
       return state;
@@ -21,7 +21,7 @@ const videoTimestampReducer = (state: number | null = 0, action: any) => {
 
 const rootReducer = combineReducers({
   events: eventsReducer,
-  videoTimestamp: videoTimestampReducer,
+  videoPlaybackTime: videoPlaybackTimeReducer,
 });
 
 export default rootReducer;

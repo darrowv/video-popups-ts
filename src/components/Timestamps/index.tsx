@@ -1,24 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchEvents, setVideoTimestamp } from "../../store/actions";
+import { setVideoPlaybackTime } from "../../store/actions";
 import { RootState } from "../../store";
 import formatTimestamp from "../../utils/formatTimestamp";
 import { IEvent } from "../../utils/interfaces/event.interface";
 
 import "./timestamps.css";
-import { useEffect } from "react";
 
 function Timestamps() {
-  const events = useSelector((state: RootState) => state.events);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchEvents());
-  }, [dispatch]);
+  let events = useSelector((state: RootState) => state.events);
+  let dispatch = useDispatch();
 
   const handleEventClick = (timestamp: number) => {
-    dispatch(setVideoTimestamp(null));
+    dispatch(setVideoPlaybackTime(null));
     setTimeout(() => {
-      dispatch(setVideoTimestamp(timestamp));
+      dispatch(setVideoPlaybackTime(timestamp));
     }, 0);
   };
 

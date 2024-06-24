@@ -1,4 +1,9 @@
-.video {
-  width: 80%;
+.video-container {
+  position: relative;
+  width: 90%;
   align-self: center;
+}
+
+.video {
+  width: 100%;
 }

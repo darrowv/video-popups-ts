@@ -1,10 +1,12 @@
 export interface IEvent {
   timestamp: number;
   duration: number;
-  zone: {
-    left: number;
-    top: number;
-    width: number;
-    height: number;
-  };
+  zone: IZone;
+}
+
+export interface IZone {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
 }
